@@ -21,10 +21,9 @@ public class SFCConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/signup").permitAll()
+                        .requestMatchers("/api/v1/signup").permitAll()
                         .anyRequest().authenticated())
                 .userDetailsService(userDetailsService)
-                .formLogin(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }

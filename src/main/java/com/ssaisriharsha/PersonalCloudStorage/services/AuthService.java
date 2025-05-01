@@ -21,7 +21,6 @@ public class AuthService {
     public void createUser(AppUser user) {
         if(repo.existsById(user.getUsername())) throw new UserExistsException("The user with the username " + user.getUsername()+" already exists. Kindly choose another username");
         user.setPassword(encoder.encode(user.getPassword()));
-        user.setCreatedOn(LocalDateTime.now());
         user.setBanned(false);
         repo.save(user);
     }
